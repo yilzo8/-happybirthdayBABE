@@ -218,19 +218,32 @@
       border: 1px solid rgba(255,255,255,0.8);
     }
 
-    /* Page 4 語音頁專用置中樣式 */
+    /* Page 4 滿鋪自然交錯小元素樣式 */
     .voice-page-wrapper {
+      position: relative;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 270px;
-      position: relative;
-      text-align: center;
+      min-height: 280px;
       margin-bottom: 10px;
     }
 
+    .voice-bg-decor {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      align-items: center;
+      justify-items: center;
+      padding: 10px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .btn-spicy-voice {
+      position: relative;
+      z-index: 5;
       background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
       color: white;
       border: none;
@@ -244,7 +257,6 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      z-index: 5;
     }
 
     .btn-spicy-voice:hover {
@@ -479,7 +491,7 @@
 22歲了真的好快好快，說了好多次好快還是會感慨時間怎麼過得這麼快，祝福妳新的一歲比去年更快樂更幸福更有錢！</div>
       </div>
 
-      <!-- Page 4：獨立親友語音專屬頁面 -->
+      <!-- Page 4：滿鋪散落可愛元素語音頁 -->
       <div class="card-page" id="page4">
         <div class="card-header">
           <h1>Special Message 🎙️</h1>
@@ -487,15 +499,27 @@
         </div>
 
         <div class="voice-page-wrapper">
-          <!-- 四周可愛裝飾元素 -->
-          <div class="float-decor" style="top: 10px; left: 20px; font-size: 24px;">💖</div>
-          <div class="float-decor" style="top: 15px; right: 25px; font-size: 22px;">✨</div>
-          <div class="float-decor" style="bottom: 25px; left: 25px; font-size: 22px;">☁️</div>
-          <div class="float-decor" style="bottom: 20px; right: 20px; font-size: 22px;"><i class="fa-solid fa-paw" style="color:#60a5fa;"></i></div>
-          <div class="float-decor" style="top: 110px; left: 15px; font-size: 20px;">🐟</div>
-          <div class="float-decor" style="top: 120px; right: 18px; font-size: 20px;">🦴</div>
+          <!-- 滿鋪自然交錯小元素 -->
+          <div class="voice-bg-decor">
+            <span style="font-size: 18px; transform: rotate(-15deg); opacity: 0.85;">💖</span>
+            <span style="font-size: 15px; transform: rotate(20deg); opacity: 0.75;">✨</span>
+            <span style="font-size: 19px; transform: rotate(-8deg); opacity: 0.85;"><i class="fa-solid fa-paw" style="color:#60a5fa;"></i></span>
+            <span style="font-size: 16px; transform: rotate(12deg); opacity: 0.8;">🐟</span>
+            <span style="font-size: 14px; transform: rotate(-25deg); opacity: 0.7;">☁️</span>
+            <span style="font-size: 17px; transform: rotate(15deg); opacity: 0.85;">🦴</span>
+            <span style="font-size: 15px; transform: rotate(-10deg); opacity: 0.75;">🌟</span>
+            <span style="font-size: 16px; transform: rotate(18deg); opacity: 0.8;">🌸</span>
+            <span style="font-size: 18px; transform: rotate(-12deg); opacity: 0.85;">💖</span>
+            <span style="font-size: 15px; transform: rotate(22deg); opacity: 0.75;"><i class="fa-solid fa-paw" style="color:#3b82f6;"></i></span>
+            <span style="font-size: 17px; transform: rotate(-18deg); opacity: 0.85;">✨</span>
+            <span style="font-size: 15px; transform: rotate(10deg); opacity: 0.75;">🦴</span>
+            <span style="font-size: 16px; transform: rotate(-15deg); opacity: 0.8;">🐟</span>
+            <span style="font-size: 19px; transform: rotate(8deg); opacity: 0.85;">☁️</span>
+            <span style="font-size: 15px; transform: rotate(-20deg); opacity: 0.75;">🌟</span>
+            <span style="font-size: 17px; transform: rotate(14deg); opacity: 0.85;">🌸</span>
+          </div>
 
-          <!-- 正中間按鈕 -->
+          <!-- 正中間大按鈕 -->
           <button class="btn-spicy-voice" id="voiceBtn" onclick="toggleVoice()">
             <i class="fa-solid fa-volume-high" id="voiceIcon"></i> 
             <span id="voiceText">用力按下我🥵</span>
@@ -791,7 +815,6 @@
       const txt = document.getElementById('voiceText');
 
       if (voice.paused) {
-        // 如果背景音樂正在放，自動暫停 bgm 以防重疊
         if (!bgm.paused) bgm.pause();
 
         voice.play().then(() => {
